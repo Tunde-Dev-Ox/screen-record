@@ -264,7 +264,7 @@ const Library = () => {
           try {
             const file = await storage.getFile(bucketId, doc.fileId);
             if (file) {
-              const url = storage.getFilePreview(bucketId, doc.fileId);
+              const url = storage.getFileDownload(bucketId, doc.fileId);
               urls[doc.fileId] = url.href;
               items.push({ ...doc });
             }
