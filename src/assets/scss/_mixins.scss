@@ -1,0 +1,341 @@
+@use './variables.scss';
+
+// CONVERT PX TO REF
+@function toRem($size) {
+    @return #{$size/16}rem;
+  }
+  
+  /* ==============
+  FLEX ROW CENTER
+  ================== */
+  @mixin flex-row-center-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin flex-row-center-nowrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin flex-row-center-start-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  @mixin flex-row-center-start-nowrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  /* ==============
+  FLEX ROW START
+  ================== */
+  @mixin flex-row-start-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  @mixin flex-row-start-nowrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  @mixin flex-row-start-start-nowrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  /* ==============
+  FLEX ROW END
+  ================== */
+  @mixin flex-row-end-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  @mixin flex-row-end-nowrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  /* ==============
+  FLEX ROW BETWEEN
+  ================== */
+  @mixin flex-row-between-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  @mixin flex-row-between-nowrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* ==============
+  FLEX ROW AROUND
+  ================== */
+  @mixin flex-row-around-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  @mixin flex-row-around-nowrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  /* ==============
+  FLEX ROW EVENLY
+  ================== */
+  @mixin flex-row-evenly-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  @mixin flex-row-evenly-nowrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  /* ======================
+  FLEX ROW START END NOWRAP
+  ========================== */
+  @mixin flex-row-start-end {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+  
+  /* ======================
+  FLEX ROW END END NOWRAP
+  ========================== */
+  @mixin flex-row-end-end {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  
+  /* ==================
+  FLEX COLUMN CENTER
+  ==================== */
+  @mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* =====================
+  FLEX COLUMN START START
+  ======================== */
+  @mixin flex-column-start-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  /* =======================
+  FLEX COLUMN START CENTER
+  ========================== */
+  @mixin flex-column-start-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  /* =========================
+  FLEX COLUMN BETWEEN CENTER
+  ============================ */
+  @mixin flex-column-between-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* =========================
+  FLEX COLUMN BETWEEN START
+  ============================ */
+  @mixin flex-column-between-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  /* =========================
+  FLEX COLUMN END CENTER
+  ============================ */
+  @mixin flex-column-end-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  /* =========================
+  FLEX COLUMN END START
+  ============================ */
+  @mixin flex-column-end-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  
+  /* =========================
+  FLEX COLUMN END END
+  ============================ */
+  @mixin flex-column-end-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  
+  /* =================
+  TRUNCATE TEXT
+  ==================== */
+  @mixin text-truncate() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  @mixin save--button--wrapper {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: auto;
+    touch-action: manipulation;
+    font-size: 16px;
+    font-weight: 300;
+    border-radius: 8px;
+    outline: none;
+    padding: 14px 24px;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s,
+      -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    -webkit-tap-highlight-color: transparent;
+    border: none;
+    background: #000;
+    color: #ffffff;
+    contain: paint;
+  }
+
+  @mixin get-started-button {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: auto;
+    touch-action: manipulation;
+    border-radius: 8px;
+    outline: none;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s,
+      -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    -webkit-tap-highlight-color: transparent;
+    border-width: 1.2px;
+    border-style: solid;
+    background-color: variables.$white;
+    color: variables.$text;
+    contain: paint;
+    font-weight: 800;
+  }
+  
+  @mixin edit--button--style {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    border-color: black;
+    width: auto;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    outline: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    -webkit-transition: box-shadow 0.2s ease, -webkit-transform 0.1s ease,
+      transform 0.1s ease;
+    -moz-transition: box-shadow 0.2s ease, transform 0.1s ease;
+    transition: box-shadow 0.2s ease, -ms-transform 0.1s ease,
+      -webkit-transform 0.1s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+    border: none;
+    background: transparent;
+    color: #222;
+    text-decoration: underline;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  
+  @mixin pageSlidupAnimation {
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-name: keyframe_14ic1xm;
+  }
+  
+  @keyframes keyframe_14ic1xm {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate(0, 40%);
+      -ms-transform: translate(0, 40%);
+      transform: translate(0, 40%);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      -ms-transform: none;
+      transform: none;
+    }
+  }
+  

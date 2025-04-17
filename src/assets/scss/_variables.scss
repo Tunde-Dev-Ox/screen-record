@@ -1,0 +1,23 @@
+//colors
+$white: #ffffff;
+$primary-color: #222222;//for main headers, navigation, and logo
+$secondary-color: #3ddabe;//for buttons and actionable items
+$touched-color: #f77ead;//for icons, small UI elements, and dividers
+$accent-color: #F8B400;//for icons, small UI elements, and dividers
+$neutral: #E5E5E5;//for backgrounds, borders, and inactive elements
+$text: #333333;//for text and icons
+$border: #E0E0E0;//for borders and dividers
+$inactive-text: #969ea4;
+$success: #4CAF50;//for success messages
+$warning: #FFC107;//for warning messages
+$error: #F44336;//for error messages
+
+
+//fonts
+$font-family: "Inter", sans-serif;
+
+//units
+$container: 100%;
+$wrapper-padding: 0 1.25rem;
+$wrapper-max-width: 1200px;
+$font-size: 1rem;

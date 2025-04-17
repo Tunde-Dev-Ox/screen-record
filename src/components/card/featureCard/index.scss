@@ -1,0 +1,50 @@
+.features-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #000000;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    flex-direction: column;
+
+    &:hover {
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+        scale: 1.05;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #222222;
+        margin-top: 2rem;
+    }
+
+    p {
+        font-size: 1.25rem;
+        color: #000000be;
+        line-height: 1.5;
+        margin-top: 2rem;
+        text-align: left;
+    }
+}
+
+.features-card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f77ead;
+    color: #fff;
+    font-size: 1.5rem;
+
+    svg {
+        width: 30px;
+        height: 30px;
+    }
+}
