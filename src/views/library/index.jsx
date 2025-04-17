@@ -243,28 +243,69 @@ const Library = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // // const fetchUserAndRecordings = async () => {
+    //   const databaseId = import.meta.env.VITE_DATABASE_ID;
+    //   const bucketId = import.meta.env.VITE_RECORDING_BUCKET_ID;
+    //   const collectionId = import.meta.env.VITE_COLLECTION_ID;
+
+    //   try {
+    //     const userData = await account.get();
+    //     setUser(userData);
+
+    //     const res = await databases.listDocuments(databaseId, collectionId, [
+    //       Query.equal('userId', userData.$id),
+    //       Query.orderDesc('createdAt'),
+    //     ]);
+
+    //     const items = [];
+    //     const urls = {};
+
+    //     for (const doc of res.documents) {
+    //       try {
+    //         const file = await storage.getFile(bucketId, doc.fileId);
+    //         if (file) {
+    //           const url = storage.getFileDownload(bucketId, doc.fileId);
+    //           urls[doc.fileId] = url.href;
+    //           items.push({ ...doc });
+    //         }
+    //       } catch (error) {
+    //         console.error('File not found for document:', doc.$id);
+    //       }
+    //     }
+
+    //     setRecordings(items);
+    //     setVideoUrls(urls);
+    //     setLoading(false);
+    //   } catch (err) {
+    //     console.error("Error fetching data:", err);
+    //     setLoading(false);
+    //   }
+    // };
+
+
+
     const fetchUserAndRecordings = async () => {
       const databaseId = import.meta.env.VITE_DATABASE_ID;
       const bucketId = import.meta.env.VITE_RECORDING_BUCKET_ID;
       const collectionId = import.meta.env.VITE_COLLECTION_ID;
-
+    
       try {
         const userData = await account.get();
         setUser(userData);
-
+    
         const res = await databases.listDocuments(databaseId, collectionId, [
           Query.equal('userId', userData.$id),
           Query.orderDesc('createdAt'),
         ]);
-
+    
         const items = [];
         const urls = {};
-
+    
         for (const doc of res.documents) {
           try {
             const file = await storage.getFile(bucketId, doc.fileId);
             if (file) {
-              const url = storage.getFileDownload(bucketId, doc.fileId);
+              const url = await storage.getFileDownload(bucketId, doc.fileId);  // Await the promise for URL
               urls[doc.fileId] = url.href;
               items.push({ ...doc });
             }
@@ -272,7 +313,7 @@ const Library = () => {
             console.error('File not found for document:', doc.$id);
           }
         }
-
+    
         setRecordings(items);
         setVideoUrls(urls);
         setLoading(false);
@@ -281,7 +322,7 @@ const Library = () => {
         setLoading(false);
       }
     };
-
+    
     fetchUserAndRecordings();
   }, []);
 
