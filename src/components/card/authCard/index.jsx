@@ -32,8 +32,8 @@ const AuthCard = () => {
         // Redirect to Google login
         account.createOAuth2Session(
           'google',
-          'https://screen-recording-zeta.vercel.app/dashboard',
-          'https://screen-recording-zeta.vercel.app/'
+          'https://screen-record-nine.vercel.app/dashboard',
+          'https://screen-record-nine.vercel.app/'
         );
       };
       
