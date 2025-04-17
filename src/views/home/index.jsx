@@ -5,60 +5,30 @@ import ReactPlayer from 'react-player'
 import { FaCheckCircle } from "react-icons/fa";
 import Faq from '../../components/faq'
 import InfiniteScroll from '../../components/InfiniteScroll'
-import { MdOutlineInstallMobile } from "react-icons/md";
+import { IoIosLogIn } from "react-icons/io";
 import { BsRecord2 } from "react-icons/bs";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import HowItWorksCard from '../../components/card/howitworkscard';
 import AuthCard from '../../components/card/authCard';
 import { motion } from 'framer-motion';
+import { RiRecordCircleFill } from "react-icons/ri";
+import FeatureCard from '../../components/card/featureCard';
+import { AiFillAudio } from "react-icons/ai";
+import { MdOutlinePreview } from "react-icons/md";
+import { IoLibraryOutline } from "react-icons/io5";
+import { IoMdShareAlt } from "react-icons/io";
+import {FaDownload} from "react-icons/fa";
+import TestimonialCard from '../../components/card/testimonialCard';
 
 
 const Home = () => {
-    // const testimonialData = [
-    //     {
-    //         index: 0,
-    //         picSrc: "https://images.pexels.com/photos/3772712/pexels-photo-3772712.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    //         userName: "James Dalton, College Professor",
-    //         testimonial: "As a college professor, I often record lectures that run for hours. ScreenBox has been a lifesaver! The no time limit feature lets me record entire classes without worrying about interruptions. Plus, the offline recording option is perfect for when I’m teaching in areas with poor internet. Highly recommend it to all educators!"
-    //     },
-    //     {
-    //         index: 1,
-    //         picSrc: "https://images.pexels.com/photos/6953575/pexels-photo-6953575.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    //         userName: "Sara M., YouTuber",
-    //         testimonial: "I’ve been using ScreenBox for my YouTube channel, and it’s been a game-changer! The unlimited recording feature lets me record for hours without any interruptions. The HD quality is perfect for my makeup tutorials, and the custom watermark feature is great for branding my videos."
-    //     },
-    //     {
-    //         index: 2,
-    //         picSrc: "https://images.pexels.com/photos/9072217/pexels-photo-9072217.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    //         userName: "Mike S., Twitch Streamer",
-    //         testimonial: "As a Twitch streamer, I need a reliable tool to record my gameplay. ScreenBox lets me record for hours without any limits, and the webcam overlay is perfect for adding commentary. The compressed video files are a huge plus—they save me so much storage space. Love this tool!"
-    //     },
-    //     {
-    //         index: 3,
-    //         picSrc: "https://images.pexels.com/photos/12885861/pexels-photo-12885861.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    //         userName: "Donald R., Business Owner",
-    //         testimonial: "I use ScreenBox to create product demos and training videos for my team. The unlimited recording feature is perfect for long videos, and the HD quality ensures my videos look professional. The custom watermark feature is great for branding, and the compressed video files make sharing a breeze. Highly recommend it to all business owners!"
-    //     },
-    //     {
-    //         index: 4,
-    //         picSrc: "https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    //         userName: "Alex P., Graduate Student",
-    //         testimonial: "I use ScreenBox to record online lectures and create study materials. The offline recording feature is a lifesaver when I’m in areas with no internet, and the HD quality ensures I don’t miss any details. For students on a budget, the free plan is amazing, but the Pro plan is totally worth it for the advanced tools!"
-    //     },
-    //     {
-    //         index: 5,
-    //         picSrc: "https://images.pexels.com/photos/6266273/pexels-photo-6266273.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    //         userName: "Emily W., Software Developer",
-    //         testimonial: "I use ScreenBox to record bug reports and coding tutorials. The advanced annotations are super helpful for pointing out issues, and the no time limit feature is perfect for long coding sessions. The best part? No sign-up required—just install and start recording. It’s a developer’s dream!"
-    //     }
-    // ]
 
     const homeFaqs = [
         {
           index: 0,
-          question: "What is ScreenBox?",
+          question: "What is Stroomify?",
           answer:
-            "ScreenBox is a simple screen recording app built for remote workers and professionals who want fast, frictionless recording."
+            "Stroomify is a simple screen recording app built for remote workers and professionals who want fast, frictionless recording."
         },
         {
           index: 1,
@@ -76,7 +46,7 @@ const Home = () => {
           index: 3,
           question: "Is there a time limit?",
           answer:
-            "Yes — 25 minutes per recording. Need more time? Just start a new recording after each 25-minute session."
+            "Yes — 20 minutes per recording. Need more time? Just start a new recording after each 25-minute session."
         },
         {
           index: 4,
@@ -88,25 +58,25 @@ const Home = () => {
           index: 5,
           question: "How much does it cost?",
           answer:
-            "ScreenBox is free. Soon, we’ll offer paid features like AI tools, custom watermarks, 1080p/4K recording, offline mode, sharing, and an API — all at affordable prices."
+            "Stroomify is free. Soon, we’ll offer paid features like AI tools, custom watermarks, 1080p/4K recording, offline mode, sharing, and an API — all at affordable prices. Stay tuned!"
         },
         {
           index: 6,
           question: "Is there a mobile version?",
           answer:
-            "Not yet. ScreenBox is currently web-only, but we’re working on a mobile version. Stay tuned."
+            "Not yet. Stroomify is currently web-only, but we’re working on a mobile version. Stay tuned."
         },
         {
           index: 7,
           question: "Is my data secure?",
           answer:
-            "Yes. We don’t store your videos. You choose where to save them — your device or Google Drive. Your content, your control."
+            "Yes. Your recordings are stored securely. We use encryption and follow best practices to keep your data safe."
         },
         {
           index: 8,
           question: "Do you offer support?",
           answer:
-            "Yes. Reach out to our support team anytime at @screenboxsupport for help, feedback, or feature requests."
+            "Yes. Reach out to our support team anytime at stroomlify.io"
         }
       ];
       
@@ -131,7 +101,7 @@ const Home = () => {
                             </li>
                             <li>
                                 <Link to="/movies">
-                                    Use Cases
+                                    Features
                                 </Link>
                             </li>
                             <li>
@@ -167,13 +137,13 @@ const Home = () => {
                             Your complete screen recording platform for <span>remote work.</span>
                         </h1>
                         <p>
-                            Screenbox provides professionals with a simple, fast, and easy way to record their screen. Just fast and easy.
+                            Stroomify provides professionals with a simple, fast, and easy way to record their screen. Just fast and easy.
                         </p>
                         <button 
                            onClick={() => setShowAuthCard(true)}
                         >
                             <span>
-                                Try ScreenBox for free
+                                Try Stroomify for free
                             </span>
                         </button>
                         <span>
@@ -207,7 +177,7 @@ const Home = () => {
                         <HowItWorksCard 
                             title="Signup with Google"
                             description="In just two clicks, signup with Google. No authentication hassle. No friction."
-                            icon={<MdOutlineInstallMobile />}
+                            icon={<IoIosLogIn />}
                         />
                         <HowItWorksCard
                             title="Record your screen"
@@ -216,7 +186,7 @@ const Home = () => {
                         />
                         <HowItWorksCard
                             title="Download recording"
-                            description="Once you’re done recording, download the video to your device or upload it to Google Drive and share with friends or team."
+                            description="Once you’re done recording, download the video to your device or auto save to library to share with friends or team."
                             icon={<IoCloudUploadOutline />}
                         />
                     </div>
@@ -225,7 +195,7 @@ const Home = () => {
             <section className='single-testimonial'>
                 <div className="single-testimonial-wrapper">
                     <h2>
-                        Screenbox makes it easy to record effortlessly without <span className='single-testimonial-span'>friction.</span> Now, I can easily catch bugs and share them with my team.
+                        Stroomify makes it easy to record effortlessly without <span className='single-testimonial-span'>friction.</span> Now, I can easily catch bugs and share them with my team.
                     </h2>
                     <p className='testimonial-description'>
                         - David Enyoghasim, Software Developer
@@ -246,7 +216,91 @@ const Home = () => {
                     <p className='features-description'>
                         All the features you need to record your screen better.
                     </p>
-
+                    <div className="features-card__wrapper">
+                        <FeatureCard 
+                            title="One-click screen recording"
+                            description="Start recording your entire screen, window, or browser tab with a single click. No setup. No fluff."
+                            icon={<RiRecordCircleFill />}
+                        />
+                        <FeatureCard
+                            title="Audio Capture"
+                            description="Capture audio from your system and microphone simultaneously. Perfect for tutorials and presentations."
+                            icon={<AiFillAudio />}
+                        />
+                        <FeatureCard
+                            title="Preview modal"
+                            description="Preview your recording instantly before downloading. No need to wait for processing."
+                            icon={<MdOutlinePreview />}
+                        />
+                        <FeatureCard
+                            title="Recording Library"
+                            description="Access all your recordings in one place. Easily manage, download, or delete them."
+                            icon={<IoLibraryOutline />}
+                        />
+                        <FeatureCard
+                            title="One-click downloads"
+                            description="Download your recordings in WebM format with a single click. No fuss, no hassle."
+                            icon={<FaDownload />}
+                        />
+                        <FeatureCard
+                            title="Sharable link"
+                            description="Easily share your recordings with a simple link. Perfect for collaboration."
+                            icon={<IoMdShareAlt />}
+                        />
+                    </div>
+                </div>
+            </section>
+            <section className='testimonial'>
+                <div className="testimonial-wrapper">
+                    <div className="tag">
+                        <span>
+                            Testimonials
+                        </span>
+                    </div>
+                    <h2>
+                        What <span>users</span> are saying.
+                    </h2>
+                    <p className='testimonial-description'>
+                        Trusted by thousands of users and remote workers around the world.
+                    </p>
+                    <div className="testimonial-card__wrapper">
+                        <TestimonialCard 
+                            text={`"Stroomify makes screen recording so easy for us at Brooi. Just click and record. No hassle."`}
+                            description="Founder of Brooi"
+                            name="Jeff Benson"
+                            image="/rDEgo0yhj2Qldk12p9Px3Vo65g8.avif"
+                        />
+                        <TestimonialCard 
+                            text={`"Since using Stroomify, my screen recording process has become so much easier. I can record, edit, and share in no time."`}
+                            description="Software Engineer at TechCorp"
+                            name="Sarah Johnson"
+                            image="/zfmF1iFYDX2iAwx2tDdmHAHKsKY.avif"
+                        />
+                        <TestimonialCard 
+                            text={`"Stroomify is a game changer for remote teams. We can easily record and share our screens without any hassle."`}
+                            description="Product Manager at InnovateX"
+                            name="Michael Smith"
+                            image="/rDEgo0yhj2Qldk12p9Px3Vo65g8.avif"
+                        />
+                        <TestimonialCard 
+                            text={`"Stroomify makes our team's screen recording process so much smoother. I love the one-click recording feature!"`}
+                            description="UX Designer at CreativeHub"
+                            name="Emily Davis"
+                            image="/Inuou987yLKbSzFSEWH9F4znyc.avif"
+                        />
+                        <TestimonialCard 
+                            text={`"Stroomify is the best screen recording tool I've used. It's fast, easy to use, and the quality is top-notch."`}
+                            description="Marketing Specialist at Brandify"
+                            name="David Lee"
+                            image="/rDEgo0yhj2Qldk12p9Px3Vo65g8.avif"
+                        />
+                        <TestimonialCard 
+                            text={`"Stroomify has transformed the way we record and share our screens. It's a must-have tool for remote workers."`}
+                            description="Content Creator at MediaPro"
+                            name="Mike Murphy"
+                            image="/rDEgo0yhj2Qldk12p9Px3Vo65g8.avif"
+                        />
+                    </div>
                 </div>
             </section>
             <section className='pricing'>
@@ -327,7 +381,7 @@ const Home = () => {
                             </ul>
                             <button onClick={() => setShowAuthCard(true)}>
                             <span>
-                                Try ScreenBox for free
+                                Try Stroomify for free
                             </span>
                             </button>
                         </div>
@@ -411,7 +465,7 @@ const Home = () => {
                         Everything you need to <span>know.</span>
                     </h2>
                     <p className='faq-description'>
-                        Have a question about ScreenBox? Here's everything you need to know about Screenbox.
+                        Have a question about Stroomlify? Here's everything you need to know about Stroomlify.
                     </p>
                     <div className="faq-bars-wrapper">
                         <div className="faq-bar">
@@ -437,7 +491,7 @@ const Home = () => {
                     </p>
                     <button onClick={() => setShowAuthCard(true)}>
                         <span>
-                            Try ScreenBox for free
+                            Try Stroomify for free
                         </span>
                     </button>
                 </div>
@@ -446,7 +500,7 @@ const Home = () => {
                 <div className="footer-wrapper">
                     <div className="footer-top">
                         <p>
-                            &copy; 2025 ScreenBox. All rights reserved.
+                            &copy; 2025 Stroomify. All rights reserved.
                         </p>
                         <div className="privacy">
                             <Link to="/">
@@ -459,12 +513,12 @@ const Home = () => {
                      </div>
                      <div className="footer-bottom">
                         <p>
-                            Powered by <a href="/">NextBuildr</a>
+                            Powered by <a href="/">Stroomify Team</a>
                         </p>
                      </div>
                      <div className="bottom-logo">
                         <span>
-                            Screenbox
+                            Stroomify
                         </span>
                      </div>
                 </div>

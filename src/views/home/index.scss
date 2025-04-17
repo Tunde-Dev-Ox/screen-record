@@ -95,6 +95,13 @@ header {
 // hero section
 .hero {
     padding-top: 8rem;
+    background-image: url("/wGAHOWhVswEtWkOKTJN6s2CW0.svg");
+    background-size: 34.8px;
+    background-position: center center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    background-color: #f2f2f2;
 }
 
 .hero-wrapper {
@@ -659,6 +666,75 @@ header {
         text-align: center;
     }
 }
+
+.features-card__wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    height: 100%;
+    align-items: baseline;
+}
+
+
+
+//testimonials
+//features
+.testimonial {
+    padding-top: 6rem;
+}
+
+.testimonial-wrapper {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        text-align: center;
+        margin: 0 auto;
+
+        span {
+            color: #2406b7;
+            font-size: 2rem;
+            font-weight: 600;
+            font-family: "Instrument Serif", serif;
+            font-style: italic;
+        }
+    }
+
+    .testimonial-description {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: rgb(23, 22, 22, 0.7);
+        max-width: 500px;
+        text-align: center;
+    }
+}
+
+.testimonial-card__wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    height: 100%;
+    align-items: baseline;
+}
+
 
 
 

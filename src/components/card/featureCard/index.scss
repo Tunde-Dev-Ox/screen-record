@@ -5,46 +5,42 @@
     gap: 20px;
     padding: 20px;
     border-radius: 10px;
-    background: #000000;
+    background: #ffffff;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     position: relative;
     flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 
     &:hover {
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
         scale: 1.05;
     }
+}
 
-    h3 {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #222222;
-        margin-top: 2rem;
+.features-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+    svg {
+        width: 25px;
+        height: 25px;
+        color: #000000;
     }
 
-    p {
-        font-size: 1.25rem;
-        color: #000000be;
-        line-height: 1.5;
-        margin-top: 2rem;
-        text-align: left;
+    h3 {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #000000;
+        margin-left: 10px;
     }
 }
 
-.features-card-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f77ead;
-    color: #fff;
-    font-size: 1.5rem;
-
-    svg {
-        width: 30px;
-        height: 30px;
-    }
+.features-card__content {
+    width: 100%;
+    color: rgba(23, 22, 22, 0.7);
+    font-size: 0.97rem;
+    font-weight: 400;
 }

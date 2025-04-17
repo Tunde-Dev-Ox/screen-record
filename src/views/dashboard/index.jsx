@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { account } from '/src/lib/appwrite.js';
 import {storage, databases, ID} from '/src/lib/appwrite.js';
-import mixpanel from '/src/lib/mixpanel.js'; // Import Mixpanel
-import toast from 'react-hot-toast'; // Import toast for notifications
+import mixpanel from '/src/lib/mixpanel.js';
+import toast from 'react-hot-toast';
 
 // with audio
-const MAX_RECORDING_TIME = 25 * 60 * 1000; // 20 minutes in milliseconds
+const MAX_RECORDING_TIME = 20 * 60 * 1000; // 20 minutes in milliseconds
 
 const Dashboard = () => {
   const [showOptions, setShowOptions] = useState(false);
@@ -25,21 +25,7 @@ const Dashboard = () => {
 
 
   const [user, setUser] = useState(null);
-
-// useEffect(() => {
-//   const fetchUser = async () => {
-//     try {
-//       const userData = await account.get();
-//       setUser(userData);
-//     } catch (err) {
-//       console.error("Failed to fetch user", err);
-//     }
-//   };
-
-//   fetchUser();
-// }, []);
-
-
+  
 useEffect(() => {
   const fetchUser = async () => {
     try {
@@ -65,32 +51,12 @@ const handleLogout = async () => {
   try {
     await account.deleteSession('current'); // Logs out the current session
     window.location.href = '/'; // Redirect to homepage or login
-    toast.success('Logged out successfully!'); // Show success message
+    toast.success('Logged out successfully!');
   } catch (err) {
     console.error('Failed to logout:', err);
-    toast.error('Logout failed. Please try again.'); // Show error message
+    toast.error('Logout failed. Please try again.');
   }
 };
-
-
-  // const handleUploadRecording = async (blob) => {
-  //   const bucketId = import.meta.env.VITE_RECORDING_BUCKET_ID;
-  //   const databaseId = import.meta.env.VITE_DATABASE_ID;
-  //   const collectionId = import.meta.env.VITE_COLLECTION_ID
-  //   const user = await account.get();
-  //   const file = new File([blob], `recording-${Date.now()}.webm`, { type: 'video/webm' });
-  //   // await storage.createFile(bucketId, ID.unique(), file);
-  //   const uploadedFile = await storage.createFile(bucketId, ID.unique(), file);
-
-  //   await databases.createDocument(databaseId, collectionId, ID.unique(), {
-  //     userId: user.$id,
-  //     fileId: uploadedFile.$id,
-  //     createdAt: new Date().toISOString(),
-  //     title: `Recording - ${new Date().toLocaleString()}`,
-  //   });
-  
-  //   toast.success('Recording uploaded successfully!'); // Show success message
-  // }
 
   const handleUploadRecording = async (blob) => {
     const bucketId = import.meta.env.VITE_RECORDING_BUCKET_ID;
@@ -100,7 +66,7 @@ const handleLogout = async () => {
     const file = new File([blob], `recording-${Date.now()}.webm`, { type: 'video/webm' });
   
     try {
-      toast.loading('Uploading your recording...'); // Start loading
+      toast.loading('Uploading your recording...');
   
       const uploadedFile = await storage.createFile(bucketId, ID.unique(), file);
   
@@ -111,7 +77,7 @@ const handleLogout = async () => {
         title: `Recording - ${new Date().toLocaleString()}`,
       });
   
-      toast.dismiss(); // End loading
+      toast.dismiss();
       toast.success('Recording uploaded successfully!');
     } catch (error) {
       console.error('Upload error:', error);
@@ -122,7 +88,6 @@ const handleLogout = async () => {
   
 
   useEffect(() => {
-    // List all available audio input devices
     const loadMicDevices = async () => {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const mics = devices.filter(d => d.kind === 'audioinput');
@@ -140,13 +105,12 @@ const handleLogout = async () => {
   const handleOptionSelect = async (type) => {
     try {
       const displayStream = await navigator.mediaDevices.getDisplayMedia({
-        // video: { displaySurface: type === 'tab' ? 'browser' : 'monitor' },
          video: {
             width: { ideal: 1920 }, // Full HD resolution
             height: { ideal: 1080 }, 
             frameRate: { ideal: 30 } // Higher frame rate for smoother video
           },
-        audio: false, // We’ll merge audio separately
+        audio: false,
       });
 
       let finalStream = displayStream;
@@ -209,8 +173,8 @@ const handleLogout = async () => {
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
       mediaStream.getTracks().forEach((track) => track.stop());
-      clearTimeout(stopTimeout); // Clear the timeout if recording stops manually
-      toast.success('Recording stopped'); // Show stop message
+      clearTimeout(stopTimeout);
+      toast.success('Recording stopped');
     }
   };
 
@@ -223,15 +187,6 @@ const handleLogout = async () => {
               <img src="/logo.svg" alt="logo" />
             </Link>
           </div>
-          {/* <button className="user-initial">
-            {user?.prefs?.picture ? (
-              <img src={user.prefs.picture}
-              alt="User avatar"
-              style={{width: 32, height: 32, borderRadius: '50%', objectFit: 'cover',}}/>
-            ) : (
-              <span>{user?.name?.charAt(0) || 'U'}</span>
-            )}
-          </button> */}
           <div className="user-profile">
   <button
     className="user-avatar"
