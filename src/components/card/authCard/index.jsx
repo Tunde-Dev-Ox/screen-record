@@ -11,10 +11,16 @@ const AuthCard = () => {
         setError('');
       
         // Redirect to Google login
+        // account.createOAuth2Session(
+        //   'google',
+        //   'https://screen-record-nine.vercel.app/dashboard',
+        //   'https://screen-record-nine.vercel.app/'
+        // );
+
         account.createOAuth2Session(
-          'google',
-          'https://screen-record-nine.vercel.app/dashboard',
-          'https://screen-record-nine.vercel.app/'
+            'google',
+            'http://localhost:5173/dashboard',
+            'http://localhost:5173/'
         );
       };
       

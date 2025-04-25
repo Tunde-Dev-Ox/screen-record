@@ -92,6 +92,32 @@ const Home = () => {
 
     const [showAuthCard, setShowAuthCard] = useState(false);
 
+    const container = {
+  visible: {
+    transition: {
+      staggerChildren: 0.4
+    }
+  }
+}
+
+const word = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    filter: "blur(20px)"
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 1.8,
+      ease: "easeOut"
+    }
+  }
+}
+
+
     return (
         <div>
             <header>
@@ -142,9 +168,16 @@ const Home = () => {
                                 Super fast and easy
                             </span>
                         </div>
-                        <h1>
-                            Record. Share. <span>Ship.</span>
-                        </h1>
+                        <motion.h1
+                            className="hero-title"
+                            initial="hidden"
+                            animate="visible"
+                            variants={container}
+                        >
+                            <motion.span variants={word} className='hero-normal'>Record.</motion.span>{" "}
+                            <motion.span variants={word} className='hero-normal'>Share.</motion.span>{" "}
+                            <motion.span variants={word} className="highlight">Ship.</motion.span>
+                        </motion.h1>
                         <p>
                         Async screen recording for SaaS teams and remote workers. Ditch meetings. Record your screen, voice, and camera in seconds.
                         </p>
