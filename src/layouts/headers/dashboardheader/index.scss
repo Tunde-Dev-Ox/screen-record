@@ -1,0 +1,94 @@
+.dashboard-header {
+    height: 70px;
+    width: 100%;
+    z-index: 1000;
+    // position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: .7px solid #bcbcbc32;
+    background: #ffffff;
+}
+
+.dashboard__header_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 20px;
+
+    .video_search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 600px;
+        width: 100%;
+        padding: 0 20px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-right: auto;
+    
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 30px;
+            border: none;
+            background-color: transparent;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #000000;
+            outline: none;
+        }
+    }
+
+    .dashboard_header__btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        .video-count {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #000000;
+    
+            button {
+                background-color: transparent;
+                border: 1px solid #ccc;
+                border-radius: 30px;
+                padding: 10px 20px;
+                font-size: 1rem;
+                font-weight: 500;
+                color: #333;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+        }
+    
+        .upgrade__button {
+            background-color: #db1896;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+    
+            &:hover {
+                background-color: #ab0772;
+            }
+
+            a {
+                text-decoration: none;
+                color: #eae8e8;
+            }
+        }
+    }
+}

@@ -120,7 +120,7 @@ const word = {
 
     return (
         <div>
-            <header>
+            <main-header>
                 <div className="header-container">
                     <div className="logo">
                         <Link to="/">
@@ -159,7 +159,7 @@ const word = {
                         </button>
                     </div>
                 </div>
-            </header>
+            </main-header>
             <section className='hero'>
                 <div className="hero-wrapper">
                     <div className="hero-text">
@@ -424,10 +424,10 @@ const word = {
                                 Pro
                             </h3>
                             <p>
-                                For SaaS teams & professionals
+                                For remote workers
                             </p>
                             <span>
-                                $10/month
+                                $8/month
                             </span>
                             <ul>
                                 <li>

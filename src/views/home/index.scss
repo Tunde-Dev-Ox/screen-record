@@ -1,4 +1,4 @@
-header {
+main-header {
     height: 70px;
     position: fixed;
     width: 100%;
@@ -313,6 +313,7 @@ header {
 
 .price-card {
     padding: 20px;
+    width: 350px;
     border-radius: 40px;
     // background: #000000;
     transition: all 0.3s ease-in-out;
