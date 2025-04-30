@@ -1,0 +1,15 @@
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 240px auto;
+    grid-template-rows: 1fr;
+    grid-template-areas: "sidebar main";
+    height: auto;
+}
+
+.dashboard-layout__content {
+    grid-area: main;
+    height: auto;
+    width: 100%;
+    position: relative;
+    padding: 10px;
+}

@@ -1,0 +1,431 @@
+.recording-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+
+  &__content {
+    // background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 24px;
+    padding-bottom: 0;
+    // max-width: 900px;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    color: #f5f5f5;
+    display: flex;
+
+    h2, h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #fff;
+      font-size: 24px;
+    }
+  }
+
+  .close-overlay {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #f5f5f5;
+    transition: color 0.2s;
+    z-index: 1010;
+
+    &:hover {
+      color: #f44336;
+    }
+  }
+
+  .recording-overlay-main-contents {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  // Webcam feed styles
+  .webcam-feed {
+    max-width: 240px;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    
+    video {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background-color: #2a2a2a;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      object-fit: cover;
+    }
+
+
+  .camera-toggle {
+    position: absolute;
+    bottom: 14px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: #f5f5f5;
+    }
+  }
+  }
+
+  // Video controls
+  .video-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 10px 12px;
+    border: 4px solid #ccc;
+    background-color: #2a2a2a;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    button {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: none;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+       
+      svg {
+        fill: #f5f5f5;
+      }
+    }
+    
+    #timer {
+      font-family: monospace;
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+      text-align: center;
+    }
+  }
+
+  // Recording options styles
+  .recording-options {
+    max-width: 300px;
+    width: 100%;
+    padding: 20px 0;
+    z-index: inherit;
+    margin-left: auto;
+    
+    &-wrapper {
+      background-color: #0c0c0c;
+      padding: 24px;
+      border-radius: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: #f5f5f5;
+    }
+
+    &__buttons {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+
+      button {
+        padding: 12px 20px;
+        background-color: #3a3a3a;
+        border: 1px solid #ccc;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: #f5f5f5;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: #4a4a4a;
+          border-color: #777;
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+    &__cancel {
+      text-align: right;
+      margin-top: 16px;
+
+      button {
+        background: none;
+        border: none;
+        color: #aaa;
+        cursor: pointer;
+        font-size: 24px;
+
+        &:hover {
+          color: #f44336;
+        }
+      }
+    }
+  }
+
+  // Mic options
+  .mic-toggle {
+    margin-bottom: 16px;
+    
+    label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      color: #f5f5f5;
+      
+      input {
+        margin-right: 8px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    select {
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background-color: #3a3a3a;
+      color: #f5f5f5;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 8px;
+      cursor: pointer;
+      
+      option {
+        background-color: #3a3a3a;
+        color: #f5f5f5;
+      }
+    }
+  }
+
+  // Countdown styles
+  .countdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1200;
+    width: 100%;
+
+
+    .countdown-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      border: 4px solid #ccc;
+      animation: pulse 1s infinite alternate;
+      
+      .countdown-number {
+        font-size: 48px;
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #f5f5f5;
+    }
+
+    .cancel-button {
+      padding: 10px 24px;
+      background-color: transparent;
+      color: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #d32f2f;
+      }
+    }
+  }
+
+  // Preview styles
+  .preview-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    flex-direction: column;
+    backdrop-filter: blur(3px);
+
+    .preview-content {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    
+    .preview-video {
+      width: 100%;
+        height: 340px;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .preview-actions {
+      display: flex;
+      gap: 4px;
+      justify-content: flex-start;
+
+      button {
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background-color: transparent;
+
+        &:hover {
+          transform: translateY(-3px);
+        }
+
+        svg {
+          fill: #f5f5f5;
+          font-size: 28px;
+        }
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Discard confirmation modal
+  .discard-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1600;
+
+    .discard-content {
+      background-color: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+      h3 {
+        margin-top: 0;
+        color: #000;
+      }
+
+      p {
+        margin-bottom: 24px;
+        color: #333;
+      }
+
+      .discard-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+
+        button {
+          padding: 12px 24px;
+          border-radius: 30px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: all 0.2s ease;
+          background-color: transparent;
+          border: 1px solid #ccc;
+        }
+      }
+    }
+  }
+}

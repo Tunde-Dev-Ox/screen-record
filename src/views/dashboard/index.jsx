@@ -1,12 +1,18 @@
 import './index.scss';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import { account } from '/src/lib/appwrite.js';
 import {storage, databases, ID} from '/src/lib/appwrite.js';
 import mixpanel from '/src/lib/mixpanel.js';
 import toast from 'react-hot-toast';
 import { FaCloudUploadAlt, FaDownload } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+// import { FaSearch } from "react-icons/fa";
+import { MdOutlineCancel } from "react-icons/md";
+import DashboardLayout from '../../layouts/dashboardLayout';
+import RecordingOverlay from '../../components/recordingOverlay';
+import { useRecording } from '../../hooks/useRecording';
+// import RecordingOverlay from '../../components/recordingOverlay';
 
 // with audio
 const MAX_RECORDING_TIME = 20 * 60 * 1000; // 20 minutes in milliseconds
@@ -158,9 +164,9 @@ const Dashboard = () => {
     loadMicDevices();
   }, []);
 
-  const handleStartClick = () => {
-    if (!isRecording && !isPreparing) setShowOptions(prev => !prev);
-  };
+  // const handleStartClick = () => {
+  //   if (!isRecording && !isPreparing) setShowOptions(prev => !prev);
+  // };
 
   const prepareRecording = async (type) => {
     try {
@@ -279,63 +285,26 @@ const Dashboard = () => {
     toast.info('Recording canceled');
   };
 
+  const handleStartClick = () => {
+    if (!isRecording && !isPreparing) setShowOptions(prev => !prev);
+    setIsOnboardingVisible(false); // Hide onboarding
+    setIsCountdownVisible(true);   // Show countdown
+
+    // After 3 seconds, switch to recording buttons
+    setTimeout(() => {
+      setIsCountdownVisible(false);
+      setIsRecordingVisible(true);
+    }, 5000);
+  };
+
+  const { isOverlayVisible } = useRecording();
+
+
   return (
     <>
-      <header className="dashboard-header">
-        <div className="dashboard__header_wrapper">
-          <div className="logo">
-            <Link to="/dashboard">
-              <img src="/logo.svg" alt="logo" />
-            </Link>
-          </div>
-          <div className="user-profile">
-            <button
-              className="user-avatar"
-              onClick={() => setShowDropdown(prev => !prev)}
-            >
-              {user?.prefs?.picture ? (
-                <img
-                  src={user.prefs.picture}
-                  alt="User avatar"
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: '50%',
-                    objectFit: 'cover',
-                  }}
-                />
-              ) : (
-                <span>{user?.name?.charAt(0) || 'U'}</span>
-              )}
-            </button>
-
-            {showDropdown && (
-              <div className="user-dropdown">
-                <button onClick={handleLogout}>Sign out</button>
-                <button><Link to="/library">Library</Link></button>
-                <button>User Profile</button>
-              </div>
-            )}
-          </div>
-        </div>
-      </header>
-
-      <div className="dashboard-title">
-        <div className="dashboard-title__left">
-          <h1>Videos</h1>
-          <button onClick={handleStartClick} disabled={isRecording || isPreparing}>
-            <span>New Recording</span>
-          </button>
-        </div>
-        <div className="empty-div"></div>
-      </div>
-
+      <DashboardLayout>
       <div className="dashboard-main">
-        <h1>
-          Hi, {user?.name} <br />What would you like to record today?
-        </h1>
-
-        {isPreparing && countdown > 0 ? (
+        {/* {isPreparing && countdown > 0 ? (
           <div className="countdown-container">
             <div className="countdown-circle">
               <span className="countdown-number">{countdown}</span>
@@ -343,57 +312,44 @@ const Dashboard = () => {
             <p>Recording starts in {countdown} seconds</p>
             <button onClick={cancelRecording} className="cancel-button">Cancel</button>
           </div>
-        ) : (
-          <button onClick={handleStartClick} disabled={isRecording || isPreparing} className='dashboard__start-recording'>
-            <img src="/video.svg" alt="video icon" />
+        ) : ( */}
+          <div className="dashboard-empty-state">
+            <img src="/empty.png" alt="empty state" />
+            <h2>
+              Skip the meeting, share your screen.
+            </h2>
+            <p>
+              Start recording in seconds and keep your team in the loop — without slowing down.
+            </p>
+            <button className='dashboard__start-recording'>
             <span>
-              {isRecording 
-                ? 'Recording...' 
-                : isPreparing 
-                  ? 'Preparing...' 
-                  : 'Start recording'}
+              Watch our demo videos
             </span>
-          </button>
-        )}
+            </button>
+          </div>
 
-        {showOptions && (
-          <div className="recording-options">
-            <p>Select what you want to record:</p>
-
-            <div className="recording-options__buttons">
-              <button onClick={() => prepareRecording('screen')}>Entire Screen</button>
-              <button onClick={() => prepareRecording('window')}>Window</button>
-              <button onClick={() => prepareRecording('tab')}>Browser Tab</button>
+        {/* <div className="dashboard-onboarding-card-section">
+          <div className="dashboard-onboarding-card__wrapper">
+            <div className="dashboard-onboarding-card">
+              <img src="/bicycle.svg" alt="bicycle" />
+              <h3>
+                I want to practice
+              </h3>
+              <button>
+                Watch our demo video
+              </button>
             </div>
-
-            <div className="mic-toggle">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={includeMic}
-                  onChange={() => {
-                    setIncludeMic(prev => !prev);
-                    toast(`${includeMic ? 'Microphone disabled' : 'Microphone enabled'}`);
-                  }}
-                />
-                Include Microphone
-              </label>
-
-              {includeMic && (
-                <select
-                  value={selectedMicId}
-                  onChange={(e) => setSelectedMicId(e.target.value)}
-                >
-                  {micDevices.map((device) => (
-                    <option key={device.deviceId} value={device.deviceId}>
-                      {device.label || `Mic ${device.deviceId.slice(-4)}`}
-                    </option>
-                  ))}
-                </select>
-              )}
+            <div className="dashboard-onboarding-card">
+              <img src="/rocket.svg" alt="bicycle" />
+              <h3>
+                I&apos;ll explore on my own
+              </h3>
+              <button onClick={handleStartClick}>
+                Start recording
+              </button>
             </div>
           </div>
-        )}
+        </div> */}
 
         {isRecording && (
           <div className="stop-recording">
@@ -408,15 +364,15 @@ const Dashboard = () => {
               <video src={previewUrl} controls autoPlay style={{ width: '100%' }} />
 
               <div className="preview-actions">
-                <button onClick={handleUploadRecording} className="save-button">
+                <button onClick={handleUploadRecording} className="save-button" title='Upload video to library'>
                   <FaCloudUploadAlt />
                 </button>
-                <a href={previewUrl} download={`recording-${Date.now()}.webm`}>
+                <a href={previewUrl} download={`recording-${Date.now()}.webm`} title='Download video'>
                   <button>
                     <FaDownload />
                   </button>
                 </a>
-                <button onClick={handleDiscardRecording} className="discard-button">
+                <button onClick={handleDiscardRecording} className="discard-button" title='Discard video'>
                   <MdDelete />
                 </button>
                 <button onClick={() => setShowPreview(false)}
@@ -432,13 +388,15 @@ const Dashboard = () => {
               <h3>Discard Recording?</h3>
               <p>Are you sure you want to discard this recording? This action cannot be undone.</p>
               <div className="discard-actions">
-                <button onClick={confirmDiscard} className="confirm-button">Yes, Discard</button>
-                <button onClick={cancelDiscard} className="cancel-button">No, Keep It</button>
+                <button onClick={confirmDiscard}>Yes, Discard</button>
+                <button onClick={cancelDiscard}>No, Keep It</button>
               </div>
             </div>
           </div>
         )}
+        {isOverlayVisible && <RecordingOverlay />}
       </div>
+      </DashboardLayout>
     </>
   );
 };
