@@ -3,11 +3,14 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './assets/scss/main.scss'
 import { RecordingProvider } from './context/RecordingProvider.jsx';
+import UserProvider from './context/UserProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RecordingProvider>
+    <UserProvider>
+      <RecordingProvider>
       <App />
-    </RecordingProvider>
+      </RecordingProvider>
+    </UserProvider>
   </StrictMode>,
 )

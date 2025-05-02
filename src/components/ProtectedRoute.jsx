@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { account } from '../lib/appwrite';
+// import { account } from '../lib/appwrite';
 import './LoadingSpinner.scss';
+import { useUser } from '../context/index.js';
 
 const LoadingSpinner = () => {
   return (
@@ -54,35 +55,19 @@ const LoadingSpinner = () => {
 };
 
 const ProtectedRoute = ({ children }) => {
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  // const [loading, setLoading] = useState(true);
+  const {user, loading} = useUser();
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await account.get();  // Fetch user session
-        setUser(res);
-      } catch (err) {
-        setUser(null);  // Not logged in
-      } finally {
-        setTimeout(() => {
-          setLoading(false);
-        }, 600); // Add a small delay for a smoother transition
-      }
-    };
-
-    checkAuth();
-  }, []);
 
   if (loading) return <LoadingSpinner />;
-
+  if (!user) return <Navigate to="/" replace />;
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      {user ? children : <Navigate to="/" replace />}
+      {children}
     </motion.div>
   );
 };

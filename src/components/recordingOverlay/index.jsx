@@ -14,6 +14,7 @@ import { BsCameraVideo, BsCameraVideoOff } from "react-icons/bs";
 // Constants
 const MAX_RECORDING_TIME = 20 * 60 * 1000; // 20 minutes in milliseconds
 const COUNTDOWN_TIME = 5; // 5 seconds countdown
+const WATERMARK_DISPLAY_TIME = 3000; // Display branding for 3 seconds at the end
 
 // Custom event for library updates
 const notifyLibraryUpdated = () => {
@@ -43,13 +44,14 @@ const RecordingOverlay = () => {
   const [recordingTime, setRecordingTime] = useState(0);
   const [webcamStream, setWebcamStream] = useState(null);
   const [isCameraOn, setIsCameraOn] = useState(true);
-
+  const [showWatermark, setShowWatermark] = useState(false);
   
   // Refs
   const timerRef = useRef(null);
   const recordingIntervalRef = useRef(null);
   const webcamRef = useRef(null);
   const chunksRef = useRef([]);
+  const videoPreviewRef = useRef(null);
 
   // Load available microphone devices
   useEffect(() => {
@@ -74,6 +76,26 @@ const RecordingOverlay = () => {
       }
     };
   }, []);
+
+  // Set up watermark display when video ends
+  useEffect(() => {
+    if (videoPreviewRef.current && previewUrl) {
+      const videoElement = videoPreviewRef.current;
+      
+      const handleVideoEnd = () => {
+        setShowWatermark(true);
+        setTimeout(() => {
+          setShowWatermark(false);
+        }, WATERMARK_DISPLAY_TIME);
+      };
+      
+      videoElement.addEventListener('ended', handleVideoEnd);
+      
+      return () => {
+        videoElement.removeEventListener('ended', handleVideoEnd);
+      };
+    }
+  }, [previewUrl, showPreview]);
 
   // Countdown effect
   useEffect(() => {
@@ -346,6 +368,7 @@ const RecordingOverlay = () => {
     resetTimer();
     setShowOptions(true);
     setShowPreview(false);
+    setShowWatermark(false);
     
     if (previewUrl) {
       URL.revokeObjectURL(previewUrl);
@@ -424,6 +447,7 @@ const RecordingOverlay = () => {
     setPreviewUrl(null);
     chunksRef.current = [];
     setShowOptions(true);
+    setShowWatermark(false);
   };
   
   const handleDiscardRecording = () => {
@@ -457,6 +481,14 @@ const RecordingOverlay = () => {
     // Clean up
     cleanupRecording();
     hideOverlay();
+  };
+
+  // Manually show the watermark
+  const triggerWatermark = () => {
+    setShowWatermark(true);
+    setTimeout(() => {
+      setShowWatermark(false);
+    }, WATERMARK_DISPLAY_TIME);
   };
 
   // Determine if buttons should be disabled
@@ -558,7 +590,22 @@ const RecordingOverlay = () => {
             <div className="preview-container">
               <div className="preview-">
               <h3>Recording Preview</h3>
-              <video src={previewUrl} controls autoPlay className="preview-video" />
+              <div className="video-wrapper">
+                <video 
+                  ref={videoPreviewRef}
+                  src={previewUrl} 
+                  controls 
+                  autoPlay 
+                  className="preview-video"
+                  onEnded={() => triggerWatermark()}
+                />
+                
+                {showWatermark && (
+                  <div className="stroomify-watermark">
+                    <p>Recorded with <br/><span className="stroomify-logo">Stroomify</span></p>
+                  </div>
+                )}
+              </div>
 
               <div className="preview-actions">
                 <button onClick={handleUploadRecording} className="upload-button" title="Upload recording">

@@ -20,6 +20,8 @@ import { IoMdShareAlt } from "react-icons/io";
 import {FaDownload} from "react-icons/fa";
 import TestimonialCard from '../../components/card/testimonialCard';
 import { FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { Navigate } from 'react-router-dom';
+import { useUser } from '../../context/index.js';
 
 
 
@@ -116,8 +118,8 @@ const word = {
     }
   }
 }
-
-
+    const { user } = useUser();
+    if (user) return <Navigate to="/dashboard" />
     return (
         <div>
             <main-header>

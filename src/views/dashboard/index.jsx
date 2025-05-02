@@ -46,7 +46,7 @@ const Dashboard = () => {
       <DashboardLayout>
       <div className="dashboard-main">
           <div className="dashboard-empty-state">
-            <img src="/empty.png" alt="empty state" />
+            <img src="/37Z_2105.w007.n001.12B.p8.12.jpg" alt="empty state" />
             <h2>
               Hi, {firstName ? firstName : 'there'}! Skip the meeting, share your screen.
             </h2>

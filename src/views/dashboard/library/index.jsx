@@ -3,6 +3,9 @@ import { databases, storage, account, Query } from '/src/lib/appwrite';
 import { Link } from 'react-router-dom';
 import './index.scss';
 import DashboardLayout from '../../../layouts/dashboardLayout';
+import RecordingOverlay from '../../../components/recordingOverlay';
+import { useRecording } from '../../../hooks/useRecording';
+import mixpanel from '/src/lib/mixpanel.js';
 
 // Simple caching mechanism
 const CACHE_KEY = 'library_recordings_cache';
@@ -16,6 +19,7 @@ const Library = () => {
   const [selectedRecording, setSelectedRecording] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [videoErrors, setVideoErrors] = useState({});
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -202,6 +206,7 @@ const Library = () => {
     await fetchRecordings(user.$id);
   };
 
+  const { isOverlayVisible } = useRecording();
   return (
     <DashboardLayout>
     <div className="library">
@@ -222,7 +227,7 @@ const Library = () => {
           </div>
         ) : recordings.length === 0 ? (
           <div className="no-recordings">
-            <img src="/8652575.jpg" alt="No recordings" className="empty-library-image" />
+            <img src="/gradient-level-up-illustration.png" alt="No recordings" className="empty-library-image" />
             <h3>
               You do not have any recordings yet.
               <br />
@@ -268,6 +273,7 @@ const Library = () => {
           </div>
         </div>
       )}
+      {isOverlayVisible && <RecordingOverlay />}
     </div>
     </DashboardLayout>
   );
