@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import './index.scss'
 import { useState } from 'react'
 import ReactPlayer from 'react-player'
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaTiktok, FaTwitter } from "react-icons/fa";
 import Faq from '../../components/faq'
 import InfiniteScroll from '../../components/InfiniteScroll'
 import { IoIosLogIn } from "react-icons/io";
@@ -19,6 +19,8 @@ import { IoLibraryOutline } from "react-icons/io5";
 import { IoMdShareAlt } from "react-icons/io";
 import {FaDownload} from "react-icons/fa";
 import TestimonialCard from '../../components/card/testimonialCard';
+import { FaLinkedinIn, FaYoutube } from "react-icons/fa";
+
 
 
 const Home = () => {
@@ -28,57 +30,64 @@ const Home = () => {
           index: 0,
           question: "What is Stroomify?",
           answer:
-            "Stroomify is a simple screen recording app built for remote workers and professionals who want fast, frictionless recording."
+            "Stroomify is an async screen recording tool for SaaS teams, founders, and remote professionals. Capture your screen, mic, and camera — no meetings, no fuss."
         },
         {
           index: 1,
-          question: "How do I record my screen?",
+          question: "How do I start recording?",
           answer:
-            "Sign up with Google, open your dashboard, choose your screen and audio source, then hit record. That’s it."
+            "Sign in with Google, head to your dashboard, choose what to record (screen + audio), and hit the record button. Done in seconds."
         },
         {
           index: 2,
-          question: "Do I need to sign up?",
+          question: "Do I need an account?",
           answer:
-            "Yes. Signing up takes just two clicks. It helps us personalize your experience and keep your recordings secure."
+            "Yes. It only takes two clicks with Google. This keeps your recordings secure and gives you access to your personal library."
         },
         {
           index: 3,
           question: "Is there a time limit?",
           answer:
-            "Yes — 20 minutes per recording. Need more time? Just start a new recording after each 25-minute session."
+            "Free users can record up to 25 minutes per video. Pro users get up to 12 hours per recording."
         },
         {
           index: 4,
-          question: "Can I download my recordings?",
+          question: "Can I download my videos?",
           answer:
-            "Absolutely. You can instantly download your videos in WebM format. No fuss — record, preview, download."
+            "Yes. All your recordings can be downloaded in WebM format directly to your device. No waiting, no watermark on Pro."
         },
         {
           index: 5,
-          question: "How much does it cost?",
+          question: "What’s included in the free plan?",
           answer:
-            "Stroomify is free. Soon, we’ll offer paid features like AI tools, custom watermarks, 1080p/4K recording, offline mode, sharing, and an API — all at affordable prices. Stay tuned!"
+            "You get 30 recordings, 25-minute limit, screen + mic capture, access to your recording library, and clean UI — all free, forever."
         },
         {
           index: 6,
-          question: "Is there a mobile version?",
+          question: "What’s in the Pro plan?",
           answer:
-            "Not yet. Stroomify is currently web-only, but we’re working on a mobile version. Stay tuned."
+            "Unlimited recordings, 12-hour duration, no watermark, webcam overlay, shareable links, Slack integration, and more — for just $10/month."
         },
         {
           index: 7,
-          question: "Is my data secure?",
+          question: "Can I share my recordings?",
           answer:
-            "Yes. Your recordings are stored securely. We use encryption and follow best practices to keep your data safe."
+            "Pro users can generate sharable links to send recordings to teammates or clients. Free users can download and share manually."
         },
         {
           index: 8,
-          question: "Do you offer support?",
+          question: "Is my data safe?",
           answer:
-            "Yes. Reach out to our support team anytime at stroomlify.io"
+            "Yes. Your videos are securely stored in the cloud and only accessible by you. We use encryption to protect your data."
+        },
+        {
+          index: 9,
+          question: "Need help?",
+          answer:
+            "We got you. Reach out to our support team anytime at support@stroooo.io."
         }
       ];
+      
       
 
     const [showAuthCard, setShowAuthCard] = useState(false);
@@ -134,10 +143,10 @@ const Home = () => {
                             </span>
                         </div>
                         <h1>
-                            Your complete screen recording platform for <span>remote work.</span>
+                            Record. Share. <span>Ship.</span>
                         </h1>
                         <p>
-                            Stroomify provides professionals with a simple, fast, and easy way to record their screen. Just fast and easy.
+                        Async screen recording for SaaS teams and remote workers. Ditch meetings. Record your screen, voice, and camera in seconds.
                         </p>
                         <button 
                            onClick={() => setShowAuthCard(true)}
@@ -176,17 +185,17 @@ const Home = () => {
                     <div className="how-it-works-card-wrapper">
                         <HowItWorksCard 
                             title="Signup with Google"
-                            description="In just two clicks, signup with Google. No authentication hassle. No friction."
+                            description="Skip the passwords. Sign up instantly with your Google account. It's fast, secure, and friction-free."
                             icon={<IoIosLogIn />}
                         />
                         <HowItWorksCard
                             title="Record your screen"
-                            description="In your dashboard, select the screen and audio you want to record, and click on the record button."
+                            description="Choose your screen, window, or tab. Select audio sources. Hit record. It's that simple."
                             icon={<BsRecord2 />}
                         />
                         <HowItWorksCard
                             title="Download recording"
-                            description="Once you’re done recording, download the video to your device or auto save to library to share with friends or team."
+                            description="Download your video or save it to your library to share with teammates or friends in a click."
                             icon={<IoCloudUploadOutline />}
                         />
                     </div>
@@ -219,32 +228,32 @@ const Home = () => {
                     <div className="features-card__wrapper">
                         <FeatureCard 
                             title="One-click screen recording"
-                            description="Start recording your entire screen, window, or browser tab with a single click. No setup. No fluff."
+                            description="Record your entire screen, window, or tab instantly. No setup, no fluff."
                             icon={<RiRecordCircleFill />}
                         />
                         <FeatureCard
                             title="Audio Capture"
-                            description="Capture audio from your system and microphone simultaneously. Perfect for tutorials and presentations."
+                            description="Capture both system and mic audio—great for demos, walkthroughs, and tutorials"
                             icon={<AiFillAudio />}
                         />
                         <FeatureCard
-                            title="Preview modal"
-                            description="Preview your recording instantly before downloading. No need to wait for processing."
+                            title="Instant Preview"
+                            description="Review your recording right after finishing. No delays, no waiting around."
                             icon={<MdOutlinePreview />}
                         />
                         <FeatureCard
                             title="Recording Library"
-                            description="Access all your recordings in one place. Easily manage, download, or delete them."
+                            description="All your recordings in one tidy dashboard. Watch, download, or delete anytime."
                             icon={<IoLibraryOutline />}
                         />
                         <FeatureCard
                             title="One-click downloads"
-                            description="Download your recordings in WebM format with a single click. No fuss, no hassle."
+                            description="Export in WebM format with a single click. Quick and reliable. No fuss."
                             icon={<FaDownload />}
                         />
                         <FeatureCard
-                            title="Sharable link"
-                            description="Easily share your recordings with a simple link. Perfect for collaboration."
+                            title="Sharable links"
+                            description="Generate a link and share your recording. Ideal for async feedback and team updates."
                             icon={<IoMdShareAlt />}
                         />
                     </div>
@@ -332,43 +341,11 @@ const Home = () => {
                             <ul>
                                 <li>
                                     <FaCheckCircle />
-                                    Unlimited number of recordings
+                                    30 recordings
                                 </li>
                                 <li>
                                     <FaCheckCircle />
-                                    25 minutes max per recording
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    No webcam overlay
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    Watermark on videos
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    No annotations
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    No AI translations
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    Webm format
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    No offline recording
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    No sharing
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    No integration with Google Drive
+                                    25 minutes recording limit
                                 </li>
                                 <li>
                                     <FaCheckCircle />
@@ -376,7 +353,31 @@ const Home = () => {
                                 </li>
                                 <li>
                                     <FaCheckCircle />
-                                    customer support
+                                    Screen + mic recording
+                                </li>
+                                <li>
+                                    <FaCheckCircle />
+                                    Stroomify watermark
+                                </li>
+                                <li>
+                                    <FaCheckCircle />
+                                    Access recording library
+                                </li>
+                                <li>
+                                    <FaCheckCircle />
+                                    Clean UI
+                                </li>
+                                <li>
+                                    <FaCheckCircle />
+                                    No shareable links
+                                </li>
+                                <li>
+                                    <FaCheckCircle />
+                                    No slack integration
+                                </li>
+                                <li>
+                                    <FaCheckCircle />
+                                    Customer support (email)
                                 </li>
                             </ul>
                             <button onClick={() => setShowAuthCard(true)}>
@@ -390,19 +391,23 @@ const Home = () => {
                                 Pro
                             </h3>
                             <p>
-                                For remote workers & professionals
+                                For SaaS teams & professionals
                             </p>
                             <span>
-                                $5/month
+                                $10/month
                             </span>
                             <ul>
                                 <li>
                                     <FaCheckCircle />
-                                    Unlimited number of recordings
+                                    Unlimited videos
                                 </li>
                                 <li>
                                     <FaCheckCircle />
-                                    10 hours max per recording
+                                    12 hours recording limit
+                                </li>
+                                <li>
+                                    <FaCheckCircle />
+                                    No watermark
                                 </li>
                                 <li>
                                     <FaCheckCircle />
@@ -410,44 +415,32 @@ const Home = () => {
                                 </li>
                                 <li>
                                     <FaCheckCircle />
-                                    Custom watermark
+                                    Instant preview
                                 </li>
                                 <li>
                                     <FaCheckCircle />
-                                    Advanced annotations
+                                    Recording library
                                 </li>
                                 <li>
                                     <FaCheckCircle />
-                                    Advanced AI translations
+                                    Save to library (cloud)
                                 </li>
                                 <li>
                                     <FaCheckCircle />
-                                    HD (1080p/4K) format
+                                    Sharable links
                                 </li>
                                 <li>
                                     <FaCheckCircle />
-                                    Offline recording
+                                    Slack integration
                                 </li>
                                 <li>
                                     <FaCheckCircle />
-                                    Sharable link
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    Integrate with Google Drive
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    Save to cloud
-                                </li>
-                                <li>
-                                    <FaCheckCircle />
-                                    Customer support
+                                    Priority support
                                 </li>
                             </ul>
                             <button>
                             <span>
-                                Coming soon!
+                                Start 7-day free trial
                             </span>
                             </button>
                         </div>
@@ -504,6 +497,9 @@ const Home = () => {
                         </p>
                         <div className="privacy">
                             <Link to="/">
+                                About Us
+                            </Link>
+                            <Link to="/">
                                 Privacy Policy
                             </Link>
                             <Link to="/">
@@ -515,6 +511,20 @@ const Home = () => {
                         <p>
                             Powered by <a href="/">Stroomify Team</a>
                         </p>
+                        <div className="socials">
+                            <a href="/">
+                                <FaTwitter />
+                            </a>
+                            <a href="/">
+                                <FaLinkedinIn />
+                            </a>
+                            <a href="/">
+                                <FaYoutube />
+                            </a>
+                            <a href="/">
+                                <FaTiktok />
+                            </a>
+                        </div>
                      </div>
                      <div className="bottom-logo">
                         <span>
