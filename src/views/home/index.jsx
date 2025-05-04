@@ -20,6 +20,8 @@ import { IoMdShareAlt } from "react-icons/io";
 import {FaDownload} from "react-icons/fa";
 import TestimonialCard from '../../components/card/testimonialCard';
 import { FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { Navigate } from 'react-router-dom';
+import { useUser } from '../../context/index.js';
 
 
 
@@ -92,9 +94,35 @@ const Home = () => {
 
     const [showAuthCard, setShowAuthCard] = useState(false);
 
+    const container = {
+  visible: {
+    transition: {
+      staggerChildren: 0.4
+    }
+  }
+}
+
+const word = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    filter: "blur(20px)"
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 1.8,
+      ease: "easeOut"
+    }
+  }
+}
+    const { user } = useUser();
+    if (user) return <Navigate to="/dashboard" />
     return (
         <div>
-            <header>
+            <main-header>
                 <div className="header-container">
                     <div className="logo">
                         <Link to="/">
@@ -133,7 +161,7 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-            </header>
+            </main-header>
             <section className='hero'>
                 <div className="hero-wrapper">
                     <div className="hero-text">
@@ -142,9 +170,16 @@ const Home = () => {
                                 Super fast and easy
                             </span>
                         </div>
-                        <h1>
-                            Record. Share. <span>Ship.</span>
-                        </h1>
+                        <motion.h1
+                            className="hero-title"
+                            initial="hidden"
+                            animate="visible"
+                            variants={container}
+                        >
+                            <motion.span variants={word} className='hero-normal'>Record.</motion.span>{" "}
+                            <motion.span variants={word} className='hero-normal'>Share.</motion.span>{" "}
+                            <motion.span variants={word} className="highlight">Ship.</motion.span>
+                        </motion.h1>
                         <p>
                         Async screen recording for SaaS teams and remote workers. Ditch meetings. Record your screen, voice, and camera in seconds.
                         </p>
@@ -391,10 +426,10 @@ const Home = () => {
                                 Pro
                             </h3>
                             <p>
-                                For SaaS teams & professionals
+                                For remote workers
                             </p>
                             <span>
-                                $10/month
+                                $8/month
                             </span>
                             <ul>
                                 <li>

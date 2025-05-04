@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './views/home'
 import Dashboard from './views/dashboard'
 import ProtectedRoute from './components/ProtectedRoute'
-import Library from './views/library'
+import Library from './views/dashboard/library'
 import { Toaster } from 'react-hot-toast'
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
           }
         />
             <Route
-            path="/library"
+            path="/dashboard/library"
             element={
               <ProtectedRoute>
                 <Library />
